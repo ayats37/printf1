@@ -6,35 +6,11 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 02:59:43 by taya              #+#    #+#             */
-/*   Updated: 2024/10/02 01:00:26 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/22 03:28:44 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-
-void	ft_strrev(char *str)
-{
-	int		i;
-	int		j;
-	char	tmp;
-
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	i--;
-	while (j < i)
-	{
-		tmp = str[j];
-		str[j] = str[i];
-		str[i] = tmp;
-		j++;
-		i--;
-	}
-}
 
 char	*ft_cnv_dth_ptr(unsigned long long n)
 {
@@ -57,8 +33,8 @@ char	*ft_cnv_dth_ptr(unsigned long long n)
 			str[i++] = r + 'a' - 10;
 		n = n / 16;
 	}
-	ft_strrev(str);
 	str[i] = '\0';
+	ft_strrev(str);
 	return (str);
 }
 
@@ -71,7 +47,7 @@ int	ft_print_hex_ptr(unsigned long long n)
 	hex_str = ft_cnv_dth_ptr(n);
 	while (hex_str[i])
 	{
-		write(1, &hex_str[i], 1);
+		ft_putchar(hex_str[i]);
 		i++;
 	}
 	free(hex_str);

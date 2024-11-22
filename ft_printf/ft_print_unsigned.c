@@ -6,35 +6,30 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 03:32:52 by taya              #+#    #+#             */
-/*   Updated: 2024/10/03 15:22:33 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/22 02:55:52 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_print_unsigned(unsigned int n)
 {
-	int				i;
-	unsigned int	nbr;
+	int				count;
+	unsigned int	nb;
 
-	i = 0;
+	count = 0;
+	nb = n;
 	if (n == 0)
+		count++;
+	while (nb > 0)
 	{
-		ft_putnbr_fd(0, 1);
-		return (1);
+		nb /= 10;
+		count++;
 	}
-	nbr = n;
-	while (nbr > 0)
-	{
-		nbr /= 10;
-		i++;
-	}
-	ft_putnbr_fd(n, 1);
-	return (i);
+	ft_putunbr(n);
+	return (count);
 }
-
-/*int	main(void)
-{
-	printf("\n%d\n", ft_print_unsigned(7));
-}*/
+// int main()
+// {
+// 	printf("\n%d\n", ft_print_unsigned(21));
+// }

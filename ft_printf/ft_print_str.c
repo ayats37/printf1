@@ -6,33 +6,22 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 02:13:31 by taya              #+#    #+#             */
-/*   Updated: 2024/10/03 15:50:59 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/22 03:29:06 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_print_string(char *str)
 {
-	int	i;
+	int	count;
 
-	i = 0;
 	if (!str)
 	{
-		ft_putstr_fd("(null)", 1);
+		ft_putstr("(null)");
 		return (6);
 	}
-	while (str[i])
-	{
-		i++;
-	}
-	ft_putstr_fd(str, 1);
-	return (i);
+	count = ft_strlen(str);
+	ft_putstr(str);
+	return (count);
 }
-
-/*int	main(void)
-{
-	printf("\n%d\n", ft_print_string((char *)NULL));
-	printf("%s\n", (char *)NULL);
-}*/

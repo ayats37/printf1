@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 21:19:52 by taya              #+#    #+#             */
-/*   Updated: 2024/11/11 21:29:21 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/22 02:57:49 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ int	ft_printf(const char *str_input, ...)
 			}
 		}
 		else
-		{
 			j += ft_print_char(str_input[i]);
-		}
 		i++;
 	}
 	va_end(args);

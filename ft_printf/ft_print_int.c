@@ -6,36 +6,38 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 21:20:08 by taya              #+#    #+#             */
-/*   Updated: 2024/11/11 21:26:08 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/22 03:28:24 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_print_int(int n)
 {
-	unsigned int	nb;
-	int				i;
+	int	count;
+	int	nb;
 
-	i = 0;
+	count = 1;
+	nb = n;
 	if (n == -2147483648)
-		return (11);
-	else if (n < 0)
 	{
-		nb = (unsigned int)-n;
-		i++;
+		ft_putstr("-2147483648");
+		return (11);
 	}
-	else
-		nb = (unsigned int)n;
-	if (nb <= 9)
-		i++;
+	if (n < 0)
+	{
+		nb = -n;
+		count++;
+	}
 	while (nb > 9)
 	{
 		nb /= 10;
-		i++;
+		count++;
 	}
-	ft_putnbr_fd(n, 1);
-	return (i);
+	ft_putnbr(n);
+	return (count);
 }
-
+// int main()
+// {
+// 	printf("\n%d\n", ft_print_int(0));
+// }
