@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 21:49:18 by taya              #+#    #+#             */
-/*   Updated: 2024/11/23 03:10:20 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/23 23:40:07 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*ft_cnv_dth(unsigned int n, int upper_or_lower)
 	unsigned int	r;
 
 	i = 0;
-	str = malloc(33 * sizeof(char));
+	str = malloc(9 * sizeof(char));
 	if (!str)
 		return (NULL);
 	if (n == 0)

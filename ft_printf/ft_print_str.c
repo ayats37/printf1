@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 02:13:31 by taya              #+#    #+#             */
-/*   Updated: 2024/11/23 02:37:46 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/23 22:41:22 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,5 @@
 
 int	ft_print_string(char *str)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-		str = "(null)";
-	while (str[i])
-	{
-		if (ft_print_char(str[i]) == -1)
-			return (-1);
-		i++;
-	}
-	return (i);
+	return (ft_putstr(str));
 }

@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 02:59:43 by taya              #+#    #+#             */
-/*   Updated: 2024/11/23 03:10:03 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/23 23:40:47 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_cnv_dth_ptr(unsigned long long n)
 	unsigned long long	r;
 
 	i = 0;
-	str = calloc(17, sizeof(char));
+	str = calloc(19, sizeof(char));
 	if (!str)
 		return (NULL);
 	if (n == 0)
@@ -58,31 +58,25 @@ static int	ft_print_hex_ptr(unsigned long long n)
 
 int	ft_print_pointer(void *pointer)
 {
-	int	print_chars;
+	int	count;
 	int	res;
 
-	print_chars = 0;
+	count = 0;
 	if (write(1, "0x", 2) == -1)
 		return (-1);
-	print_chars += 2;
+	count += 2;
 	if (!pointer)
 	{
 		if (write(1, "0", 1) == -1)
 			return (-1);
-		print_chars++;
+		count++;
 	}
 	else
 	{
 		res = ft_print_hex_ptr((unsigned long long)pointer);
 		if (res == -1)
 			return (-1);
-		print_chars += res;
+		count += res;
 	}
-	return (print_chars);
+	return (count);
 }
-
-// int	main(void)
-// {
-// 	unsigned long long large = 0xffffffffffffffff;
-// 	printf("\n%d\n", ft_print_pointer((void *)large));
-// }

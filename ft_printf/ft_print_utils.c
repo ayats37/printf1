@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:47:04 by taya              #+#    #+#             */
-/*   Updated: 2024/11/23 03:10:10 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/23 23:08:00 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_putnbr(int n)
 	int	count;
 	int	res;
 
-	count = 0;
+	count = 1;
 	if (n == -2147483648)
 		return (ft_putstr("-2147483648"));
 	if (n < 0)
@@ -43,33 +43,34 @@ int	ft_putnbr(int n)
 	}
 	if (ft_putchar((n % 10) + '0') == -1)
 		return (-1);
-	return (count + 1);
+	return (count);
 }
 
 int	ft_putunbr(unsigned int n)
 {
-	if (n < 10)
+	int count;
+	int res;
+	
+	count = 1;
+	if (n >= 10)
 	{
-		if (ft_putchar(n + '0') == -1)
+		res = ft_putnbr(n / 10);
+		if (res == -1)
 			return (-1);
+		count += res;
 	}
-	else
-	{
-		if (ft_putunbr(n / 10) == -1)
-			return (-1);
-		if (ft_putunbr(n % 10) == -1)
-			return (-1);
-	}
-	return (0);
+	if (ft_putchar((n % 10) + '0') == -1)
+		return (-1);
+	return (count);
 }
 
 int	ft_putstr(char *str)
 {
 	int	i;
 
+	i = 0;
 	if (!str)
 		return (write(1, "(null)", 6));
-	i = 0;
 	while (str[i])
 	{
 		if (ft_putchar(str[i]) == -1)
@@ -84,6 +85,8 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		i++;
