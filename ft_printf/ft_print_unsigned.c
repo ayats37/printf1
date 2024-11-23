@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 03:32:52 by taya              #+#    #+#             */
-/*   Updated: 2024/11/22 02:55:52 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/23 02:36:58 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,26 @@ int	ft_print_unsigned(unsigned int n)
 	unsigned int	nb;
 
 	count = 0;
-	nb = n;
 	if (n == 0)
-		count++;
-	while (nb > 0)
 	{
-		nb /= 10;
 		count++;
+		if (ft_putchar('0') == -1)
+			return (-1);
 	}
-	ft_putunbr(n);
+	else
+	{
+		nb = n;
+		while (nb > 0)
+		{
+			nb /= 10;
+			count++;
+		}
+		if (ft_putunbr(n) == -1)
+			return (-1);
+	}
 	return (count);
 }
+
 // int main()
 // {
 // 	printf("\n%d\n", ft_print_unsigned(21));

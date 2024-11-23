@@ -6,20 +6,22 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 02:59:43 by taya              #+#    #+#             */
-/*   Updated: 2024/11/22 03:28:44 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/23 03:10:03 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_cnv_dth_ptr(unsigned long long n)
+
+
+static char	*ft_cnv_dth_ptr(unsigned long long n)
 {
 	char				*str;
 	unsigned int		i;
 	unsigned long long	r;
 
 	i = 0;
-	str = malloc(17 * sizeof(char));
+	str = calloc(17, sizeof(char));
 	if (!str)
 		return (NULL);
 	if (n == 0)
@@ -38,7 +40,7 @@ char	*ft_cnv_dth_ptr(unsigned long long n)
 	return (str);
 }
 
-int	ft_print_hex_ptr(unsigned long long n)
+static int	ft_print_hex_ptr(unsigned long long n)
 {
 	char	*hex_str;
 	int		i;
@@ -57,19 +59,30 @@ int	ft_print_hex_ptr(unsigned long long n)
 int	ft_print_pointer(void *pointer)
 {
 	int	print_chars;
+	int	res;
 
 	print_chars = 0;
-	if (pointer == NULL)
+	if (write(1, "0x", 2) == -1)
+		return (-1);
+	print_chars += 2;
+	if (!pointer)
 	{
-		print_chars += write(1, "0x0", 3);
-		return (print_chars);
+		if (write(1, "0", 1) == -1)
+			return (-1);
+		print_chars++;
 	}
-	print_chars += write(1, "0x", 2);
-	print_chars += ft_print_hex_ptr((unsigned long long)pointer);
+	else
+	{
+		res = ft_print_hex_ptr((unsigned long long)pointer);
+		if (res == -1)
+			return (-1);
+		print_chars += res;
+	}
 	return (print_chars);
 }
 
-/*int	main(void)
-{
-	printf("\n%d\n", ft_print_pointer("helloaya"));
-}*/
+// int	main(void)
+// {
+// 	unsigned long long large = 0xffffffffffffffff;
+// 	printf("\n%d\n", ft_print_pointer((void *)large));
+// }

@@ -6,81 +6,77 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:47:04 by taya              #+#    #+#             */
-/*   Updated: 2024/11/22 03:33:34 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/23 03:10:10 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
 }
 
-void	ft_putnbr(int n)
+int	ft_putnbr(int n)
 {
+	int	count;
+	int	res;
+
+	count = 0;
 	if (n == -2147483648)
-		ft_putstr("-2147483648");
-	else if (n < 0)
+		return (ft_putstr("-2147483648"));
+	if (n < 0)
 	{
+		if (ft_putchar('-') == -1)
+			return (-1);
+		count++;
 		n = -n;
-		ft_putchar('-');
 	}
-	if (n >= 0 && n < 10)
-		ft_putchar(n + '0');
-	else
+	if (n >= 10)
 	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
+		res = ft_putnbr(n / 10);
+		if (res == -1)
+			return (-1);
+		count += res;
 	}
+	if (ft_putchar((n % 10) + '0') == -1)
+		return (-1);
+	return (count + 1);
 }
 
-void	ft_putunbr(unsigned int n)
+int	ft_putunbr(unsigned int n)
 {
 	if (n < 10)
-		ft_putchar(n + '0');
+	{
+		if (ft_putchar(n + '0') == -1)
+			return (-1);
+	}
 	else
 	{
-		ft_putunbr(n / 10);
-		ft_putunbr(n % 10);
+		if (ft_putunbr(n / 10) == -1)
+			return (-1);
+		if (ft_putunbr(n % 10) == -1)
+			return (-1);
 	}
+	return (0);
 }
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (write(1, "(null)", 6));
 	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
-}
-
-void	ft_strrev(char *str)
-{
-	int		i;
-	int		j;
-	char	tmp;
-
-	i = 0;
-	j = 0;
-	if (!str || !str[0])
-		return;
 	while (str[i])
 	{
+		if (ft_putchar(str[i]) == -1)
+			return (-1);
 		i++;
 	}
-	i--;
-	while (j < i)
-	{
-		tmp = str[j];
-		str[j] = str[i];
-		str[i] = tmp;
-		j++;
-		i--;
-	}
+	return (i);
 }
 
 int	ft_strlen(const char *str)
@@ -93,4 +89,21 @@ int	ft_strlen(const char *str)
 		i++;
 	}
 	return (i);
+}
+void	ft_strrev(char *str)
+{
+	int		start;
+	int		end;
+	char	temp;
+
+	start = 0;
+	end = ft_strlen(str) - 1;
+	while (start < end)
+	{
+		temp = str[start];
+		str[start] = str[end];
+		str[end] = temp;
+		start++;
+		end--;
+	}
 }

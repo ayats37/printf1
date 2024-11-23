@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 21:19:52 by taya              #+#    #+#             */
-/*   Updated: 2024/11/22 02:57:49 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/23 03:22:33 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,20 @@ int	ft_check_input(const char input, va_list *args)
 		i += ft_print_hex(va_arg(*args, unsigned int), 1);
 	else if (input == '%')
 		i += ft_print_percent();
+	if (i == -1)
+		return (-1);
 	return (i);
 }
 
 int	ft_printf(const char *str_input, ...)
 {
 	int		i;
-	int		j;
+	int		total_chars;
+	int res;
 	va_list	args;
-
+	
 	i = 0;
-	j = 0;
+	total_chars = 0;
 	va_start(args, str_input);
 	while (str_input[i])
 	{
@@ -51,14 +54,20 @@ int	ft_printf(const char *str_input, ...)
 		{
 			if (str_input[i + 1])
 			{
-				j += ft_check_input(str_input[i + 1], &args);
+				res = ft_check_input(str_input[i + 1], &args);
+				if (res == -1)
+					return (va_end(args), -1);
+				total_chars += res;
 				i++;
 			}
 		}
 		else
-			j += ft_print_char(str_input[i]);
+		{
+			if (ft_print_char(str_input[i]) == -1)
+				return (va_end(args), -1);
+			total_chars++;
+		}
 		i++;
 	}
-	va_end(args);
-	return (j);
+	return (va_end(args), total_chars);
 }
