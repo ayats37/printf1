@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 21:19:52 by taya              #+#    #+#             */
-/*   Updated: 2024/11/23 23:59:58 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/25 04:16:19 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,34 @@ int	ft_check_input(const char input, va_list *args)
 	return (i);
 }
 
+int ft_process_of_ft_printf(const char *str_input, int *i, va_list *args, int *count)
+{
+	int res;
+	
+	if (str_input[*i] == '%')
+	{
+			if (str_input[*i + 1])
+			{
+				res = ft_check_input(str_input[*i + 1], args);
+				if (res == -1)
+					return (-1);
+				*count += res;
+				(*i)++;
+			}
+	}
+	else
+	{
+		if (ft_print_char(str_input[*i]) == -1)
+			return (-1);
+		(*count)++;
+	}
+	return (0);
+}
+
 int	ft_printf(const char *str_input, ...)
 {
 	int		i;
 	int		count;
-	int res;
 	va_list	args;
 	
 	i = 0;
@@ -48,23 +71,8 @@ int	ft_printf(const char *str_input, ...)
 	va_start(args, str_input);
 	while (str_input[i])
 	{
-		if (str_input[i] == '%')
-		{
-			if (str_input[i + 1])
-			{
-				res = ft_check_input(str_input[i + 1], &args);
-				if (res == -1)
-					return (va_end(args), -1);
-				count += res;
-				i++;
-			}
-		}
-		else
-		{
-			if (ft_print_char(str_input[i]) == -1)
-				return (va_end(args), -1);
-			count++;
-		}
+		if (ft_process_of_ft_printf(str_input, &i, &args, &count) == -1)
+			return (va_end(args), -1);
 		i++;
 	}
 	return (va_end(args), count);
