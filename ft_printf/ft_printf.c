@@ -36,20 +36,21 @@ int	ft_check_input(const char input, va_list *args)
 	return (i);
 }
 
-int ft_process_of_ft_printf(const char *str_input, int *i, va_list *args, int *count)
+int	ft_process_of_ft_printf(const char *str_input, int *i, va_list *args,
+		int *count)
 {
-	int res;
-	
+	int	res;
+
 	if (str_input[*i] == '%')
 	{
-			if (str_input[*i + 1])
-			{
-				res = ft_check_input(str_input[*i + 1], args);
-				if (res == -1)
-					return (-1);
-				*count += res;
-				(*i)++;
-			}
+		if (str_input[*i + 1])
+		{
+			res = ft_check_input(str_input[*i + 1], args);
+			if (res == -1)
+				return (-1);
+			*count += res;
+			(*i)++;
+		}
 	}
 	else
 	{
@@ -65,7 +66,7 @@ int	ft_printf(const char *str_input, ...)
 	int		i;
 	int		count;
 	va_list	args;
-	
+
 	i = 0;
 	count = 0;
 	va_start(args, str_input);
@@ -77,4 +78,3 @@ int	ft_printf(const char *str_input, ...)
 	}
 	return (va_end(args), count);
 }
-

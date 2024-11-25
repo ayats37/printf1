@@ -6,11 +6,29 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 21:49:18 by taya              #+#    #+#             */
-/*   Updated: 2024/11/23 23:40:07 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/25 04:33:11 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void	ft_strrev(char *str)
+{
+	int		start;
+	int		end;
+	char	temp;
+
+	start = 0;
+	end = ft_strlen(str) - 1;
+	while (start < end)
+	{
+		temp = str[start];
+		str[start] = str[end];
+		str[end] = temp;
+		start++;
+		end--;
+	}
+}
 
 static char	ft_check_upper_or_lower(unsigned int r, int upper_or_lower)
 {

@@ -6,7 +6,7 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 21:19:54 by taya              #+#    #+#             */
-/*   Updated: 2024/11/23 23:13:42 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/25 04:31:47 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		ft_print_pointer(void *pointer);
 int		ft_printf(const char *str_input, ...);
 int		ft_putunbr(unsigned int n);
 int		ft_putnbr(int n);
-void	ft_strrev(char *str);
 int		ft_strlen(const char *str);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: taya <taya@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 21:20:01 by taya              #+#    #+#              #
-#    Updated: 2024/10/03 15:21:56 by taya             ###   ########.fr        #
+#    Updated: 2024/11/25 04:25:17 by taya             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = ft_print_char.c \
 
 NAME = libftprintf.a
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Wextra -Werror 
 
 OBJS = $(SRCS:.c=.o)
 
@@ -41,12 +41,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-
-
-
-
-
-
 
 .PHONY: all clean fclean re

@@ -21,4 +21,3 @@ int	ft_print_int(int n)
 		return (-1);
 	return (res);
 }
-

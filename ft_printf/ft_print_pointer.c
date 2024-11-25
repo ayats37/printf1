@@ -6,13 +6,29 @@
 /*   By: taya <taya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 02:59:43 by taya              #+#    #+#             */
-/*   Updated: 2024/11/23 23:40:47 by taya             ###   ########.fr       */
+/*   Updated: 2024/11/25 04:33:28 by taya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static void	ft_strrev(char *str)
+{
+	int		start;
+	int		end;
+	char	temp;
 
+	start = 0;
+	end = ft_strlen(str) - 1;
+	while (start < end)
+	{
+		temp = str[start];
+		str[start] = str[end];
+		str[end] = temp;
+		start++;
+		end--;
+	}
+}
 
 static char	*ft_cnv_dth_ptr(unsigned long long n)
 {
